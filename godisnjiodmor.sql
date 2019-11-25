@@ -7,14 +7,10 @@ create table zaposlenik (
     ime varchar(50) not null,
     prezime varchar(50) not null,
     oib char (11) null,
-    email varchar(50) not null
-);
-
-create table hijerarhija (
-    sifra int not null primary key auto_increment,
-    zaposlenik int not null,
+    email varchar(50) not null,
     nadredeni int not null
 );
+
 
 create table godisnjiodmor (
     sifra int not null primary key auto_increment,
@@ -32,9 +28,6 @@ create table evidencija_godisnjiodmor (
     preostalo_godisnjiodmor int not null
 );
 
-
-alter table hijerarhija add foreign key (zaposlenik) references zaposlenik (sifra);
-alter table hijerarhija add foreign key (nadredeni) references zaposlenik (sifra);
 
 alter table godisnjiodmor add foreign key (zaposlenik) references zaposlenik (sifra);
 alter table evidencija_godisnjiodmor add foreign key (zaposlenik) references zaposlenik (sifra);
