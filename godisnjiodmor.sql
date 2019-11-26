@@ -8,6 +8,7 @@ create table zaposlenik (
     prezime varchar(50) not null,
     oib char (11) null,
     email varchar(50) not null,
+    datumzaposlenja date not null,
     nadredeni int not null
 );
 
@@ -23,9 +24,9 @@ create table godisnjiodmor (
 create table evidencija_godisnjiodmor (
     sifra int not null primary key auto_increment,
     zaposlenik int not null,
-    ukupan_godisnjiodmor int not null,
-    iskoristen_godisnjiodmor int not null,
-    preostalo_godisnjiodmor int not null
+    godina date not null,
+    broj_dana_godisnjiodmor int not null
+    
 );
 
 
