@@ -32,10 +32,17 @@ create table evidencija_godisnjiodmor (
 alter table godisnjiodmor add foreign key (zaposlenik) references zaposlenik (sifra);
 alter table evidencija_godisnjiodmor add foreign key (zaposlenik) references zaposlenik (sifra);
 
-insert into zaposlenik (ime,prezime,email,datumzaposlenja) values
-('Ana', 'Petrović', 'ana.petrovic@gmail.com','2019-01-01'),
-('Mirjana', 'Perić', 'mirjana.peric@gmail.com','2019-01-01'),
-('Marko', 'Marković', 'markovic@gmail.com', '2019-01-03');
+insert into zaposlenik (ime,prezime,oib,email,datumzaposlenja) values
+('Ana', 'Petrović', '93655076673', 'ana.petrovic@gmail.com','2019-01-01'),
+('Mirjana', 'Perić', '90355615646', 'mirjana.peric@gmail.com','2019-01-01'),
+('Petar', 'Kralj', '36782678217', 'petar.k@gmail.com', '2019-01-02'),
+('Marko', 'Marković', '95113596277','markovic@gmail.com', '2019-01-03'),
+('Jelena', 'Mikić', '93103467263', 'jmikic@gmail.com', '2019-02-01'),
+('Elena', 'Horvat', '90505574665', 'elenah@gmail.com', '2019-02-15'),
+('Ivan', 'Knežević', '29058715389', 'ivan.knez@gmail.com', '2019-03-01'),
+('Blaž', 'Pavlović', '42565827138' 'blaz.pavlovic@gmail.com', '2019-03-20'),
+('Maja', 'Novak', '87534789882', 'majan@gmail.com', '2019-04-01'),
+('Igor', 'Tomas', '40602896341', 'tigor@gmail.com', '2019-05-01');
 
 insert into godisnjiodmor (zaposlenik,pocetak_godisnjiodmor,kraj_godisnjiodmor) values
 (1,'2019-11-01','2019-11-04'),
