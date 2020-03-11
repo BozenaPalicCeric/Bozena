@@ -5,7 +5,7 @@
  */
 package hr.edunova.hibernate.model;
 
-import java.time.Year;
+
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
@@ -16,17 +16,17 @@ import javax.persistence.ManyToOne;
 @Entity
 public class EvidencijaGodisnjiOdmor extends Entitet{
     
-    private Year godina;
+    private Integer godina;
     private Integer brojDanaGodisnjiOdmor;
     
     @ManyToOne
     private Zaposlenik zaposlenik;
 
-    public Year getGodina() {
+    public Integer getGodina() {
         return godina;
     }
 
-    public void setGodina(Year godina) {
+    public void setGodina(Integer godina) {
         this.godina = godina;
     }
 
@@ -46,5 +46,6 @@ public class EvidencijaGodisnjiOdmor extends Entitet{
         this.zaposlenik = zaposlenik;
     }
 
+    
     
 }
