@@ -8,7 +8,7 @@ package hr.edunova.hibernate.model;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
+
 
 
 
@@ -20,10 +20,8 @@ import javax.persistence.Temporal;
 public class GodisnjiOdmor extends Entitet{
     
     
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date pocetakGodisnjiOdmor;
     
-    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date pocetakGodisnjiOdmor;
     private Date krajGodisnjiOdmor;
     private Boolean odobrenjeNadredeni;
     
