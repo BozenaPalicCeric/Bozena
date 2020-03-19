@@ -5,6 +5,9 @@
  */
 package hr.godisnjiodmor_app;
 
+import hr.godisnjiodmor_app.controller.ObradaZaposlenik;
+import hr.godisnjiodmor_app.model.Zaposlenik;
+import hr.godisnjiodmor_app.util.GodisnjiException;
 import hr.godisnjiodmor_app.util.HibernateUtil;
 
 /**
@@ -15,6 +18,20 @@ public class Start {
     public Start () {
     
         //HibernateUtil.getSessionFactory().openSession();
+       
+        Zaposlenik zaposlenik=new Zaposlenik();
+        zaposlenik.setOib("25406");
+        
+        ObradaZaposlenik obradaZaposlenik= new ObradaZaposlenik(zaposlenik);
+        
+        try {
+            obradaZaposlenik.create();
+        } catch (GodisnjiException ex) {
+            System.out.println("Spremanje nije prošlo, razlog: ");
+            System.out.println(ex.getPoruka());
+        }
+        
+        
 }
     public static void main(String[] args) {
         new Start();
