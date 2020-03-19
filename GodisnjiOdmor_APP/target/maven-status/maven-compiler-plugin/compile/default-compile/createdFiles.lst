@@ -1,0 +1,6 @@
+hr\godisnjiodmor_app\model\Zaposlenik.class
+hr\godisnjiodmor_app\model\Entitet.class
+hr\godisnjiodmor_app\util\HibernateUtil.class
+hr\godisnjiodmor_app\model\EvidencijaGodisnjiOdmor.class
+hr\godisnjiodmor_app\Start.class
+hr\godisnjiodmor_app\model\GodisnjiOdmor.class
