@@ -14,7 +14,7 @@ import hr.godisnjiodmor_app.util.HibernateUtil;
 public class Start {
     public Start () {
     
-        HibernateUtil.getSessionFactory().openSession();
+        //HibernateUtil.getSessionFactory().openSession();
 }
     public static void main(String[] args) {
         new Start();
