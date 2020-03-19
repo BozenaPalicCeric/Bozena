@@ -18,7 +18,7 @@ import javax.persistence.MappedSuperclass;
 public abstract class Entitet {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer sifra;
 
     public Integer getSifra() {
