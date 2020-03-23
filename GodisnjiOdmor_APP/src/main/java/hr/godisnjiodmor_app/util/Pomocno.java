@@ -5,11 +5,28 @@
  */
 package hr.godisnjiodmor_app.util;
 
+import hr.godisnjiodmor_app.controller.ObradaEvidencijaGodisnjiOdmor;
+import hr.godisnjiodmor_app.controller.ObradaGodisnjiOdmor;
+import hr.godisnjiodmor_app.controller.ObradaOperater;
+import hr.godisnjiodmor_app.controller.ObradaZaposlenik;
+import hr.godisnjiodmor_app.model.EvidencijaGodisnjiOdmor;
+import hr.godisnjiodmor_app.model.GodisnjiOdmor;
+import hr.godisnjiodmor_app.model.Operater;
+import hr.godisnjiodmor_app.model.Zaposlenik;
+import java.util.Date;
+import org.mindrot.jbcrypt.BCrypt;
+
 /**
  *
  * @author Bozena
  */
+
+
 public class Pomocno {
+    
+     public static String getNazivAplikacije(){
+        return "Edunova APP";
+    }
     
     public static boolean isOibValjan(String oib) {
         
@@ -42,6 +59,64 @@ public class Pomocno {
             kontrolni = 0;
 
         return kontrolni == Integer.parseInt(oib.substring(10));
+    }
+
+    public static void pocetniInsert() {
+        
+        Operater operater= new Operater();
+        operater.setEmail("bozena.palic@gmail.com");
+        operater.setIme("Božena");
+        operater.setPrezime("Palić Cerić");
+        operater.setLozinka(BCrypt.hashpw("b", BCrypt.gensalt()));
+        
+        ObradaOperater obradaOperater = new ObradaOperater();
+        try {
+            obradaOperater.create();
+        } catch (GodisnjiException ex) {
+            System.out.println(ex.getPoruka());
+        }
+        
+        Zaposlenik  zaposlenik= new Zaposlenik();
+        zaposlenik.setIme("Pero");
+        zaposlenik.setPrezime("Petrović");
+        zaposlenik.setOib("95647933683");
+        zaposlenik.setEmail("p.petrovic@gmail.com");
+        zaposlenik.setDatumZaposlenja(new Date());
+        zaposlenik.setNadredeni(1);
+        
+        ObradaZaposlenik obradaZaposlenik= new ObradaZaposlenik(zaposlenik);
+        try {
+            obradaZaposlenik.create();
+        } catch (GodisnjiException ex) {
+            
+            System.out.println(ex.getPoruka());
+        }
+        
+        GodisnjiOdmor godisnjiOdmor= new GodisnjiOdmor();
+        godisnjiOdmor.setZaposlenik(zaposlenik);
+        godisnjiOdmor.setPocetakGodisnjiOdmor(new Date());
+        godisnjiOdmor.setKrajGodisnjiOdmor(new Date());
+        
+        
+        ObradaGodisnjiOdmor obradaGodisnjiOdmor= new ObradaGodisnjiOdmor(godisnjiOdmor);
+        try {
+            obradaGodisnjiOdmor.create();
+        } catch (GodisnjiException ex) {
+            System.out.println(ex.getPoruka());
+        }
+        
+        EvidencijaGodisnjiOdmor ego=new EvidencijaGodisnjiOdmor();
+        ego.setGodina(2020);
+        ego.setZaposlenik(zaposlenik);
+        ego.setBrojDanaGodisnjiOdmor(20);
+        
+        ObradaEvidencijaGodisnjiOdmor oego= new ObradaEvidencijaGodisnjiOdmor();
+        
+        try {
+            oego.create();
+        } catch (GodisnjiException ex) {
+            System.out.println(ex.getPoruka());
+        }
     }
 
 }
