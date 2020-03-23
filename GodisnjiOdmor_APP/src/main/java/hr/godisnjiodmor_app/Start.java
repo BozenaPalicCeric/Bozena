@@ -5,10 +5,14 @@
  */
 package hr.godisnjiodmor_app;
 
+import hr.godisnjiodmor_app.controller.ObradaGodisnjiOdmor;
 import hr.godisnjiodmor_app.controller.ObradaZaposlenik;
+import hr.godisnjiodmor_app.model.GodisnjiOdmor;
 import hr.godisnjiodmor_app.model.Zaposlenik;
 import hr.godisnjiodmor_app.util.GodisnjiException;
 import hr.godisnjiodmor_app.util.HibernateUtil;
+import hr.godisnjiodmor_app.util.Pomocno;
+import hr.godisnjiodmor_app.view.SplashScreen;
 
 /**
  *
@@ -16,10 +20,15 @@ import hr.godisnjiodmor_app.util.HibernateUtil;
  */
 public class Start {
     public Start () {
+        
+        new SplashScreen().setVisible(true);
+        
+        
+        //Pomocno.pocetniInsert();
     
         //HibernateUtil.getSessionFactory().openSession();
        
-        Zaposlenik zaposlenik=new Zaposlenik();
+        /*Zaposlenik zaposlenik=new Zaposlenik();
         zaposlenik.setOib("25406");
         
         ObradaZaposlenik obradaZaposlenik= new ObradaZaposlenik(zaposlenik);
@@ -30,6 +39,9 @@ public class Start {
             System.out.println("Spremanje nije prošlo, razlog: ");
             System.out.println(ex.getPoruka());
         }
+        */
+        
+        
         
         
 }
