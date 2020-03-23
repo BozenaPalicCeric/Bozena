@@ -69,6 +69,8 @@ public class Zaposlenik extends Entitet{
     public void setNadredeni(Integer nadredeni) {
         this.nadredeni = nadredeni;
     }
+
+    
     
     
 }
