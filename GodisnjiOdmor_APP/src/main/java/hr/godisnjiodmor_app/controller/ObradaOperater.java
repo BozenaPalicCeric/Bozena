@@ -15,9 +15,9 @@ import org.mindrot.jbcrypt.BCrypt;
  *
  * @author Bozena
  */
-public class ObradaOperater extends ObradaZaposlenik {
+public class ObradaOperater extends Obrada<Operater> {
 
-    public ObradaOperater(Zaposlenik entitet) {
+    public ObradaOperater(Operater entitet) {
         super(entitet);
     }
 
@@ -42,7 +42,7 @@ public class ObradaOperater extends ObradaZaposlenik {
     
     
     @Override
-    public List<Zaposlenik> getPodaci() {
+    public List<Operater> getPodaci() {
          return session.createQuery("from Operater").list();
     }
     
@@ -67,7 +67,7 @@ public class ObradaOperater extends ObradaZaposlenik {
     }
 
     private void kontrolaLozinka() throws GodisnjiException{
-        if(entitet.getLozinka()()==null || entitet.getLozinka().trim().length()==0){
+        if(entitet.getLozinka()==null || entitet.getLozinka().trim().length()==0){
             throw new GodisnjiException("Obavezno lozinka");
         }
     }
