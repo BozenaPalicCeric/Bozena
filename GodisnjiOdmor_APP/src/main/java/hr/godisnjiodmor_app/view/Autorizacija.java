@@ -7,6 +7,7 @@ package hr.godisnjiodmor_app.view;
 
 import hr.godisnjiodmor_app.controller.ObradaOperater;
 import hr.godisnjiodmor_app.model.Operater;
+import hr.godisnjiodmor_app.util.Pomocno;
 import javax.swing.JOptionPane;
 
 /**
@@ -96,11 +97,12 @@ public class Autorizacija extends javax.swing.JFrame {
         ObradaOperater obradaOperater= new ObradaOperater();
         Operater operater=obradaOperater.autoriziraj(txtEmail.getText().trim(), new String(pswLozinka.getPassword()));
         
-       /* if(operater==null){
+        if(operater==null){
             JOptionPane.showMessageDialog(null, "Greška, ponovite");
             return;
         }
-        */
+        Pomocno.LOGIRAN=operater;
+        
         new Izbornik().setVisible(true);
         dispose();
     }//GEN-LAST:event_btnAutorizirajActionPerformed
