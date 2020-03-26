@@ -24,6 +24,9 @@ import org.mindrot.jbcrypt.BCrypt;
 
 public class Pomocno {
     
+    public static Operater LOGIRAN;
+    
+    
      public static String getNazivAplikacije(){
         return "Edunova APP";
     }
@@ -69,7 +72,7 @@ public class Pomocno {
         operater.setPrezime("Palić Cerić");
         operater.setLozinka(BCrypt.hashpw("b", BCrypt.gensalt()));
         
-        ObradaOperater obradaOperater = new ObradaOperater();
+        ObradaOperater obradaOperater = new ObradaOperater(operater);
         try {
             obradaOperater.create();
         } catch (GodisnjiException ex) {
@@ -110,7 +113,7 @@ public class Pomocno {
         ego.setZaposlenik(zaposlenik);
         ego.setBrojDanaGodisnjiOdmor(20);
         
-        ObradaEvidencijaGodisnjiOdmor oego= new ObradaEvidencijaGodisnjiOdmor();
+        ObradaEvidencijaGodisnjiOdmor oego= new ObradaEvidencijaGodisnjiOdmor(ego);
         
         try {
             oego.create();
