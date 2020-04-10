@@ -21,25 +21,13 @@ import hr.godisnjiodmor_app.view.SplashScreen;
 public class Start {
     public Start () {
         
-        new SplashScreen().setVisible(true);
+       new SplashScreen().setVisible(true);
+        //System.out.println(Pomocno.getGenOIB());
         
-        
-        //Pomocno.pocetniInsert();
+      //Pomocno.pocetniInsert();
     
-        //HibernateUtil.getSessionFactory().openSession();
+        
        
-        /*Zaposlenik zaposlenik=new Zaposlenik();
-        zaposlenik.setOib("25406");
-        
-        ObradaZaposlenik obradaZaposlenik= new ObradaZaposlenik(zaposlenik);
-        
-        try {
-            obradaZaposlenik.create();
-        } catch (GodisnjiException ex) {
-            System.out.println("Spremanje nije prošlo, razlog: ");
-            System.out.println(ex.getPoruka());
-        }
-        */
         
         
         
