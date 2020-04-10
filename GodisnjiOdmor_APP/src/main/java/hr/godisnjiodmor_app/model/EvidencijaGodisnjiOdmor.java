@@ -6,8 +6,12 @@
 package hr.godisnjiodmor_app.model;
 
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -17,10 +21,12 @@ import javax.persistence.ManyToOne;
 public class EvidencijaGodisnjiOdmor extends Entitet{
     
     private Integer godina;
-    private Integer brojDanaGodisnjiOdmor;
+    private Integer preostaliBrojDanaGodisnjiOdmor;
     
     @ManyToOne
     private Zaposlenik zaposlenik;
+    
+    
 
     public Integer getGodina() {
         return godina;
@@ -30,12 +36,12 @@ public class EvidencijaGodisnjiOdmor extends Entitet{
         this.godina = godina;
     }
 
-    public Integer getBrojDanaGodisnjiOdmor() {
-        return brojDanaGodisnjiOdmor;
+    public Integer getPreostaliBrojDanaGodisnjiOdmor() {
+        return preostaliBrojDanaGodisnjiOdmor;
     }
 
-    public void setBrojDanaGodisnjiOdmor(Integer brojDanaGodisnjiOdmor) {
-        this.brojDanaGodisnjiOdmor = brojDanaGodisnjiOdmor;
+    public void setPreostaliBrojDanaGodisnjiOdmor(Integer preostaliBrojDanaGodisnjiOdmor) {
+        this.preostaliBrojDanaGodisnjiOdmor = preostaliBrojDanaGodisnjiOdmor;
     }
 
     public Zaposlenik getZaposlenik() {
@@ -45,6 +51,14 @@ public class EvidencijaGodisnjiOdmor extends Entitet{
     public void setZaposlenik(Zaposlenik zaposlenik) {
         this.zaposlenik = zaposlenik;
     }
+    
+    
 
+    @Override
+    public String toString() {
+        return getZaposlenik().getSifra()+ "." + getZaposlenik().getIme() + " " + getZaposlenik().getPrezime();
+    }
+
+    
     
 }
