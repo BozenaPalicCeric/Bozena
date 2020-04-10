@@ -15,7 +15,8 @@ import org.hibernate.Session;
  * @author Bozena
  */
 public abstract class Obrada<T> {
-  protected T entitet;
+    
+    protected T entitet;
     protected Session session;
     protected abstract void kontrolaCreate() throws GodisnjiException;
     protected abstract void kontrolaUpdate() throws GodisnjiException;
@@ -23,18 +24,33 @@ public abstract class Obrada<T> {
     public abstract List<T> getPodaci();
     protected abstract void nakonSpremanja() throws GodisnjiException;
     
+    
+    public Obrada() {
+        session = HibernateUtil.getSessionFactory().openSession();
+    }
+    
      public Obrada(T entitet){
         this();
         this.entitet=entitet;
     }
 
-    public Obrada() {
-        session = HibernateUtil.getSessionFactory().openSession();
+    public T getEntitet() {
+        return entitet;
     }
+
+    public void setEntitet(T entitet) {
+        this.entitet = entitet;
+    }
+
+    
+
+    
+
     
     
     
     public T create() throws GodisnjiException{
+        System.out.println(entitet);
         kontrolaCreate();
         save();
         nakonSpremanja();
