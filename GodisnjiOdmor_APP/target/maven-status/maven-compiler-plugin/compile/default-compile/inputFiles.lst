@@ -1,6 +1,5 @@
 D:\JP21NetBeans\GodisnjiOdmor_APP\src\main\java\hr\godisnjiodmor_app\model\GodisnjiOdmor.java
 D:\JP21NetBeans\GodisnjiOdmor_APP\src\main\java\hr\godisnjiodmor_app\controller\ObradaEvidencijaGodisnjiOdmor.java
-D:\JP21NetBeans\GodisnjiOdmor_APP\src\main\java\hr\godisnjiodmor_app\controller\ObradaOperater.java
 D:\JP21NetBeans\GodisnjiOdmor_APP\src\main\java\hr\godisnjiodmor_app\view\ViewZaposlenik.java
 D:\JP21NetBeans\GodisnjiOdmor_APP\src\main\java\hr\godisnjiodmor_app\controller\Obrada.java
 D:\JP21NetBeans\GodisnjiOdmor_APP\src\main\java\hr\godisnjiodmor_app\view\ViewEvidencijaGodisnjiOdmor.java
@@ -9,7 +8,6 @@ D:\JP21NetBeans\GodisnjiOdmor_APP\src\main\java\hr\godisnjiodmor_app\model\Zapos
 D:\JP21NetBeans\GodisnjiOdmor_APP\src\main\java\hr\godisnjiodmor_app\view\Izbornik.java
 D:\JP21NetBeans\GodisnjiOdmor_APP\src\main\java\hr\godisnjiodmor_app\model\EvidencijaGodisnjiOdmor.java
 D:\JP21NetBeans\GodisnjiOdmor_APP\src\main\java\hr\godisnjiodmor_app\util\GodisnjiException.java
-D:\JP21NetBeans\GodisnjiOdmor_APP\src\main\java\hr\godisnjiodmor_app\model\Operater.java
 D:\JP21NetBeans\GodisnjiOdmor_APP\src\main\java\hr\godisnjiodmor_app\Start.java
 D:\JP21NetBeans\GodisnjiOdmor_APP\src\main\java\hr\godisnjiodmor_app\view\ViewGodisnjiOdmor.java
 D:\JP21NetBeans\GodisnjiOdmor_APP\src\main\java\hr\godisnjiodmor_app\controller\ObradaZaposlenik.java
