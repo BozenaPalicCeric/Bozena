@@ -20,6 +20,7 @@ public class ObradaEvidencijaGodisnjiOdmor extends Obrada<EvidencijaGodisnjiOdmo
     }
 
     public ObradaEvidencijaGodisnjiOdmor() {
+    super();
     }
 
     
