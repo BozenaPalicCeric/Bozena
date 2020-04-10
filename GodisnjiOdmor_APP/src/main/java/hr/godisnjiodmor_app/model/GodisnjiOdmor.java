@@ -22,10 +22,10 @@ public class GodisnjiOdmor extends Entitet{
     
     
     private Date pocetakGodisnjiOdmor;
-    
-    
     private Date krajGodisnjiOdmor;
+    private Integer koristenBrojDanaGo;
     private Boolean odobrenjeNadredeni;
+    
     
 @ManyToOne
 private Zaposlenik zaposlenik;
@@ -46,6 +46,14 @@ private Zaposlenik zaposlenik;
         this.krajGodisnjiOdmor = krajGodisnjiOdmor;
     }
 
+    public Integer getKoristenBrojDanaGo() {
+        return koristenBrojDanaGo;
+    }
+
+    public void setKoristenBrojDanaGo(Integer koristenBrojDanaGo) {
+        this.koristenBrojDanaGo = koristenBrojDanaGo;
+    }
+
     public Boolean getOdobrenjeNadredeni() {
         return odobrenjeNadredeni;
     }
@@ -62,7 +70,15 @@ private Zaposlenik zaposlenik;
         this.zaposlenik = zaposlenik;
     }
 
+
+
+
+
     
-    
+
+    @Override
+    public String toString() {
+        return getZaposlenik().getSifra()+ "." + getZaposlenik().getIme() + " " + getZaposlenik().getPrezime();
+    } 
    
 }
