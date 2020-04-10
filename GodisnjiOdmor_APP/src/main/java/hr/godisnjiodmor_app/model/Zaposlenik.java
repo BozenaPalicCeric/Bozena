@@ -5,14 +5,22 @@
  */
 package hr.godisnjiodmor_app.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import org.hibernate.annotations.Cascade;
 
 /**
  *
  * @author Bozena
  */
 @Entity
+
 public class Zaposlenik extends Entitet{
     
     private String ime;
@@ -20,7 +28,17 @@ public class Zaposlenik extends Entitet{
     private String oib;
     private String email;
     private Date datumZaposlenja;
-    private Integer nadredeni;
+    @ManyToOne
+    private Zaposlenik nadredeni;
+    private Integer brojDanaGoPremaUgovoruORadu;
+    private String lozinka;
+    
+    
+    @OneToMany(mappedBy = "zaposlenik")
+    private List<GodisnjiOdmor> godisnjiOdmori= new ArrayList<>();
+    
+    @OneToMany(mappedBy = "zaposlenik")
+    private List<EvidencijaGodisnjiOdmor> evidencijaGodisnjiOdmori= new ArrayList<>();
 
     public String getIme() {
         return ime;
@@ -62,15 +80,55 @@ public class Zaposlenik extends Entitet{
         this.datumZaposlenja = datumZaposlenja;
     }
 
-    public Integer getNadredeni() {
+    public Zaposlenik getNadredeni() {
         return nadredeni;
     }
 
-    public void setNadredeni(Integer nadredeni) {
+    public void setNadredeni(Zaposlenik nadredeni) {
         this.nadredeni = nadredeni;
     }
 
+    public Integer getBrojDanaGoPremaUgovoruORadu() {
+        return brojDanaGoPremaUgovoruORadu;
+    }
+
+    public void setBrojDanaGoPremaUgovoruORadu(Integer brojDanaGoPremaUgovoruORadu) {
+        this.brojDanaGoPremaUgovoruORadu = brojDanaGoPremaUgovoruORadu;
+    }
+
+    public String getLozinka() {
+        return lozinka;
+    }
+
+    public void setLozinka(String lozinka) {
+        this.lozinka = lozinka;
+    }
+
+    public List<GodisnjiOdmor> getGodisnjiOdmori() {
+        return godisnjiOdmori;
+    }
+
+    public void setGodisnjiOdmori(List<GodisnjiOdmor> godisnjiOdmori) {
+        this.godisnjiOdmori = godisnjiOdmori;
+    }
+
+    public List<EvidencijaGodisnjiOdmor> getEvidencijaGodisnjiOdmori() {
+        return evidencijaGodisnjiOdmori;
+    }
+
+    public void setEvidencijaGodisnjiOdmori(List<EvidencijaGodisnjiOdmor> evidencijaGodisnjiOdmori) {
+        this.evidencijaGodisnjiOdmori = evidencijaGodisnjiOdmori;
+    }
+
+    
+
     
     
+    @Override
+    public String toString(){
+        return getSifra()+ ". " + getIme()+ " " + getPrezime();
+    }
+            
     
 }
+
