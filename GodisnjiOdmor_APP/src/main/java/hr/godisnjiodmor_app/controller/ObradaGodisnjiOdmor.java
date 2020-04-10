@@ -6,6 +6,7 @@
 package hr.godisnjiodmor_app.controller;
 
 import hr.godisnjiodmor_app.model.GodisnjiOdmor;
+import hr.godisnjiodmor_app.model.Zaposlenik;
 import hr.godisnjiodmor_app.util.GodisnjiException;
 import java.util.List;
 
@@ -20,17 +21,20 @@ public class ObradaGodisnjiOdmor extends Obrada<GodisnjiOdmor> {
     }
 
     public ObradaGodisnjiOdmor() {
+    super ();
     }
 
     
     @Override
     protected void kontrolaCreate() throws GodisnjiException {
+       kontrolaOdobrenjeNadredeni();
+        kontrolaKoristeniGo();
         
     }
 
     @Override
     protected void kontrolaUpdate() throws GodisnjiException {
-        
+       kontrolaOdobrenjeNadredeni();
     }
 
     @Override
@@ -42,12 +46,36 @@ public class ObradaGodisnjiOdmor extends Obrada<GodisnjiOdmor> {
     public List<GodisnjiOdmor> getPodaci() {
         return session.createQuery("from GodisnjiOdmor").list();
     }
-
-    @Override
+    
+@Override
     protected void nakonSpremanja() throws GodisnjiException {
         
     }
     
     
-    
+
+    private void kontrolaOdobrenjeNadredeni()throws GodisnjiException{
+        if(entitet.getOdobrenjeNadredeni()==false){
+            throw  new GodisnjiException("GO nije odobren");
+        }
+    }
+
+    private void kontrolaKoristeniGo() throws GodisnjiException{
+        
+       Long zbroj=  (Long)session.createQuery (" select sum( g.koristenBrojDanaGo) from GodisnjiOdmor g "
+                + " where g.zaposlenik.sifra= :zaposlenik")
+               .setParameter("zaposlenik", entitet.getZaposlenik().getSifra())
+               //moram dovući još godinu
+                .getSingleResult();
+                
+         
+       
+        if(entitet.getZaposlenik().getBrojDanaGoPremaUgovoruORadu()<(zbroj + entitet.getKoristenBrojDanaGo())){
+            throw new GodisnjiException("Provjerite ukupan broj korištenih dana GO");
+        }
+    }
 }
+
+  
+    
+    
