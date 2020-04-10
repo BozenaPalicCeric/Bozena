@@ -5,14 +5,15 @@
  */
 package hr.godisnjiodmor_app.view;
 
-import hr.godisnjiodmor_app.controller.ObradaOperater;
-import hr.godisnjiodmor_app.model.Operater;
+
+import hr.godisnjiodmor_app.controller.ObradaZaposlenik;
+import hr.godisnjiodmor_app.model.Zaposlenik;
 import hr.godisnjiodmor_app.util.Pomocno;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author Božena
+ * @author Bozena
  */
 public class Autorizacija extends javax.swing.JFrame {
 
@@ -63,15 +64,15 @@ public class Autorizacija extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pswLozinka, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+                            .addComponent(pswLozinka)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(120, 120, 120)
+                        .addGap(114, 114, 114)
                         .addComponent(btnAutoriziraj, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -84,9 +85,9 @@ public class Autorizacija extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pswLozinka, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
+                .addGap(37, 37, 37)
                 .addComponent(btnAutoriziraj, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         pack();
@@ -94,14 +95,14 @@ public class Autorizacija extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAutorizirajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAutorizirajActionPerformed
-        ObradaOperater obradaOperater= new ObradaOperater();
-        Operater operater=obradaOperater.autoriziraj(txtEmail.getText().trim(), new String(pswLozinka.getPassword()));
+        ObradaZaposlenik obradaZaposlenik= new ObradaZaposlenik();
+        Zaposlenik zaposlenik=obradaZaposlenik.autoriziraj(txtEmail.getText().trim(), new String(pswLozinka.getPassword()));
         
-        if(operater==null){
+        if(zaposlenik==null){
             JOptionPane.showMessageDialog(null, "Greška, ponovite");
             return;
         }
-        Pomocno.LOGIRAN=operater;
+        Pomocno.LOGIRAN=zaposlenik;
         
         new Izbornik().setVisible(true);
         dispose();
