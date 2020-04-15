@@ -19,30 +19,36 @@ import javax.swing.JOptionPane;
  * @author Bozena
  */
 public class ViewZaposlenik extends javax.swing.JFrame {
-private final ObradaZaposlenik obrada;
+
+    private final ObradaZaposlenik obrada;
+
     /**
      * Creates new form ViewZaposlenik
      */
     public ViewZaposlenik() {
         initComponents();
-        obrada= new ObradaZaposlenik();
+        obrada = new ObradaZaposlenik();
         postInitComponents();
         ucitajNadredene();
     }
- private void postInitComponents() {
-       setTitle("Zaposlenik - "+ Pomocno.LOGIRAN.getPrezime());
+
+    private void postInitComponents() {
+        setTitle("Zaposlenik - " + Pomocno.LOGIRAN.getPrezime());
         ucitaj();
     }
- private void ucitajNadredene() {
-       DefaultComboBoxModel<Zaposlenik> m = new DefaultComboBoxModel<>();
-        new ObradaZaposlenik().getPodaci().forEach(z->m.addElement(z));
+
+    private void ucitajNadredene() {
+        DefaultComboBoxModel<Zaposlenik> m = new DefaultComboBoxModel<>();
+        new ObradaZaposlenik().getPodaci().forEach(z -> m.addElement(z));
         cmbNadredeni.setModel(m);
     }
+
     private void ucitaj() {
-        DefaultListModel<Zaposlenik> m= new DefaultListModel<>();
-        obrada.getPodaci().forEach(zaposlenik->m.addElement(zaposlenik));
+        DefaultListModel<Zaposlenik> m = new DefaultListModel<>();
+        obrada.getPodaci().forEach(zaposlenik -> m.addElement(zaposlenik));
         lstPodaci.setModel(m);
     }
+
     private void ucitajVrijednosti() {
         obrada.getEntitet().setIme(txtIme.getText());
         obrada.getEntitet().setPrezime(txtPrezime.getText());
@@ -50,10 +56,11 @@ private final ObradaZaposlenik obrada;
         obrada.getEntitet().setEmail(txtEmail.getText());
         obrada.getEntitet().setDatumZaposlenja(Pomocno.getDatumIzStringa(txtDatumZaposlenja.getText()));
         obrada.getEntitet().setBrojDanaGoPremaUgovoruORadu(Pomocno.getCijeliBrojIzStringa(txtGoUgovor.getText()));
-        
+
         obrada.getEntitet().setNadredeni(cmbNadredeni.getModel()
                 .getElementAt(cmbNadredeni.getSelectedIndex()));
     }
+
     private void postaviVrijednosti() {
         txtIme.setText(obrada.getEntitet().getIme());
         txtPrezime.setText(obrada.getEntitet().getPrezime());
@@ -61,20 +68,20 @@ private final ObradaZaposlenik obrada;
         txtEmail.setText(obrada.getEntitet().getEmail());
         txtDatumZaposlenja.setText(Pomocno.getDatum(obrada.getEntitet().getDatumZaposlenja()));
         txtGoUgovor.setText(Pomocno.getFormatCijelogBroja(obrada.getEntitet().getBrojDanaGoPremaUgovoruORadu()));
-        
-        postaviNadredene ();
+
+        postaviNadredene();
     }
-     private void postaviNadredene() {
+
+    private void postaviNadredene() {
         ComboBoxModel<Zaposlenik> m = cmbNadredeni.getModel();
-        for(int i=0;i<m.getSize();i++){
-            if(m.getElementAt(i).getSifra().equals(
-                    obrada.getEntitet().getNadredeni().getSifra())){
+        for (int i = 0; i < m.getSize(); i++) {
+            if (m.getElementAt(i).getSifra().equals(
+                    obrada.getEntitet().getNadredeni().getSifra())) {
                 cmbNadredeni.setSelectedIndex(i);
                 break;
             }
         }
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -283,11 +290,11 @@ private final ObradaZaposlenik obrada;
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-    
+
     }//GEN-LAST:event_btnDodajActionPerformed
 
     private void btnPromijeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromijeniActionPerformed
-         if (obrada.getEntitet() == null) {
+        if (obrada.getEntitet() == null) {
             JOptionPane.showMessageDialog(null, "Prvo odaberite stavku");
             return;
         }
@@ -298,7 +305,7 @@ private final ObradaZaposlenik obrada;
             ucitaj();
         } catch (GodisnjiException e) {
             JOptionPane.showMessageDialog(null, e.getPoruka());
-        }    
+        }
     }//GEN-LAST:event_btnPromijeniActionPerformed
 
     private void btnObrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObrisiActionPerformed
@@ -315,7 +322,7 @@ private final ObradaZaposlenik obrada;
     }//GEN-LAST:event_btnObrisiActionPerformed
 
     private void lstPodaciValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstPodaciValueChanged
-         if (evt.getValueIsAdjusting()) {
+        if (evt.getValueIsAdjusting()) {
             return;
         }
         obrada.setEntitet(lstPodaci.getSelectedValue());
@@ -324,27 +331,27 @@ private final ObradaZaposlenik obrada;
         }
         postaviVrijednosti();
     }//GEN-LAST:event_lstPodaciValueChanged
-    
-            
+
+
     private void btnGenOibActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenOibActionPerformed
         txtOib.setText(Pomocno.getGenOIB());
     }//GEN-LAST:event_btnGenOibActionPerformed
 
     private void btnGenEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenEmailActionPerformed
-        if(txtIme.getText().isEmpty() || txtPrezime.getText().isEmpty()){
+        if (txtIme.getText().isEmpty() || txtPrezime.getText().isEmpty()) {
             return;
         }
-        
+
         txtEmail.setText(
                 ocistiSuskavce(
-                txtIme.getText().toLowerCase()+"." + 
-                txtPrezime.getText().toLowerCase() +
-                "@godisnji.hr"
+                        txtIme.getText().toLowerCase() + "."
+                        + txtPrezime.getText().toLowerCase()
+                        + "@godisnji.hr"
                 )
         );
     }//GEN-LAST:event_btnGenEmailActionPerformed
-private String ocistiSuskavce(String s){
-        return s.replace("š","s")
+    private String ocistiSuskavce(String s) {
+        return s.replace("š", "s")
                 .replace("đ", "d")
                 .replace("ž", "z")
                 .replace("ć", "c")
@@ -353,8 +360,7 @@ private String ocistiSuskavce(String s){
     /**
      * @param args the command line arguments
      */
-    
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDodaj;
@@ -380,11 +386,4 @@ private String ocistiSuskavce(String s){
     private javax.swing.JTextField txtPrezime;
     // End of variables declaration//GEN-END:variables
 
-   
-    
-
-    
-
-       
-    
 }
