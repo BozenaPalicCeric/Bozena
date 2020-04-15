@@ -20,21 +20,14 @@ import javax.persistence.OneToOne;
 @Entity
 public class EvidencijaGodisnjiOdmor extends Entitet{
     
-    private Integer godina;
+    
     private Integer preostaliBrojDanaGodisnjiOdmor;
     
     @ManyToOne
     private Zaposlenik zaposlenik;
     
-    
-
-    public Integer getGodina() {
-        return godina;
-    }
-
-    public void setGodina(Integer godina) {
-        this.godina = godina;
-    }
+    @OneToMany(mappedBy = "evidencijaGodisnjiOdmor")
+    private List<GodisnjiOdmor> godisnjiOdmori=new ArrayList<>();
 
     public Integer getPreostaliBrojDanaGodisnjiOdmor() {
         return preostaliBrojDanaGodisnjiOdmor;
@@ -51,7 +44,16 @@ public class EvidencijaGodisnjiOdmor extends Entitet{
     public void setZaposlenik(Zaposlenik zaposlenik) {
         this.zaposlenik = zaposlenik;
     }
+
+    public List<GodisnjiOdmor> getGodisnjiOdmori() {
+        return godisnjiOdmori;
+    }
+
+    public void setGodisnjiOdmori(List<GodisnjiOdmor> godisnjiOdmori) {
+        this.godisnjiOdmori = godisnjiOdmori;
+    }
     
+   
     
 
     @Override
