@@ -23,17 +23,18 @@ public class SplashScreen extends javax.swing.JFrame {
         Ucitavanje ucitavanje = new Ucitavanje();
         ucitavanje.start();
     }
-private class Ucitavanje extends Thread{
+
+    private class Ucitavanje extends Thread {
 
         @Override
         public void run() {
             Session s = HibernateUtil.getSessionFactory().openSession();
-            if(s.getMetamodel().getEntities().size()>0){
+            if (s.getMetamodel().getEntities().size() > 0) {
                 new Autorizacija().setVisible(true);
                 dispose();
             }
         }
-}
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -76,11 +77,9 @@ private class Ucitavanje extends Thread{
     /**
      * @param args the command line arguments
      */
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 
-   
 }
