@@ -21,8 +21,8 @@ import org.hibernate.annotations.Cascade;
  */
 @Entity
 
-public class Zaposlenik extends Entitet{
-    
+public class Zaposlenik extends Entitet {
+
     private String ime;
     private String prezime;
     private String oib;
@@ -32,13 +32,12 @@ public class Zaposlenik extends Entitet{
     private Zaposlenik nadredeni;
     private Integer brojDanaGoPremaUgovoruORadu;
     private String lozinka;
-    
-    
+
     @OneToMany(mappedBy = "zaposlenik")
-    private List<GodisnjiOdmor> godisnjiOdmori= new ArrayList<>();
-    
+    private List<GodisnjiOdmor> godisnjiOdmori = new ArrayList<>();
+
     @OneToMany(mappedBy = "zaposlenik")
-    private List<EvidencijaGodisnjiOdmor> evidencijaGodisnjiOdmori= new ArrayList<>();
+    private List<EvidencijaGodisnjiOdmor> evidencijaGodisnjiOdmori = new ArrayList<>();
 
     public String getIme() {
         return ime;
@@ -120,15 +119,9 @@ public class Zaposlenik extends Entitet{
         this.evidencijaGodisnjiOdmori = evidencijaGodisnjiOdmori;
     }
 
-    
-
-    
-    
     @Override
-    public String toString(){
-        return getSifra()+ ". " + getIme()+ " " + getPrezime();
+    public String toString() {
+        return getSifra() + ". " + getIme() + " " + getPrezime();
     }
-            
-    
-}
 
+}
