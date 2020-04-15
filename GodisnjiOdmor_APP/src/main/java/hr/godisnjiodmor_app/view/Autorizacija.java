@@ -5,7 +5,6 @@
  */
 package hr.godisnjiodmor_app.view;
 
-
 import hr.godisnjiodmor_app.controller.ObradaZaposlenik;
 import hr.godisnjiodmor_app.model.Zaposlenik;
 import hr.godisnjiodmor_app.util.Pomocno;
@@ -95,15 +94,15 @@ public class Autorizacija extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAutorizirajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAutorizirajActionPerformed
-        ObradaZaposlenik obradaZaposlenik= new ObradaZaposlenik();
-        Zaposlenik zaposlenik=obradaZaposlenik.autoriziraj(txtEmail.getText().trim(), new String(pswLozinka.getPassword()));
-        
-        if(zaposlenik==null){
+        ObradaZaposlenik obradaZaposlenik = new ObradaZaposlenik();
+        Zaposlenik zaposlenik = obradaZaposlenik.autoriziraj(txtEmail.getText().trim(), new String(pswLozinka.getPassword()));
+
+        if (zaposlenik == null) {
             JOptionPane.showMessageDialog(null, "Greška, ponovite");
             return;
         }
-        Pomocno.LOGIRAN=zaposlenik;
-        
+        Pomocno.LOGIRAN = zaposlenik;
+
         new Izbornik().setVisible(true);
         dispose();
     }//GEN-LAST:event_btnAutorizirajActionPerformed
@@ -111,7 +110,6 @@ public class Autorizacija extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAutoriziraj;
