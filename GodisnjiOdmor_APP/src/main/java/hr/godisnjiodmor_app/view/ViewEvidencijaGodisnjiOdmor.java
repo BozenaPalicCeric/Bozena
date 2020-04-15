@@ -6,9 +6,11 @@
 package hr.godisnjiodmor_app.view;
 
 import hr.godisnjiodmor_app.controller.ObradaEvidencijaGodisnjiOdmor;
+import hr.godisnjiodmor_app.controller.ObradaGodisnjiOdmor;
 import hr.godisnjiodmor_app.controller.ObradaZaposlenik;
 import hr.godisnjiodmor_app.model.Entitet;
 import hr.godisnjiodmor_app.model.EvidencijaGodisnjiOdmor;
+import hr.godisnjiodmor_app.model.GodisnjiOdmor;
 import hr.godisnjiodmor_app.model.Zaposlenik;
 import hr.godisnjiodmor_app.util.GodisnjiException;
 import hr.godisnjiodmor_app.util.Pomocno;
@@ -32,12 +34,14 @@ private final ObradaEvidencijaGodisnjiOdmor obrada;
         obrada= new ObradaEvidencijaGodisnjiOdmor();
         ucitaj();
         ucitajZaposlenike();
+        
     }
     private void ucitajZaposlenike() {
         DefaultComboBoxModel<Zaposlenik> m = new DefaultComboBoxModel<>();
         new ObradaZaposlenik().getPodaci().forEach(z->m.addElement(z));
         cmbZaposlenik.setModel(m);
     }
+   
     
      private void ucitaj() {
         DefaultListModel<EvidencijaGodisnjiOdmor> m = new DefaultListModel<>();
@@ -46,13 +50,13 @@ private final ObradaEvidencijaGodisnjiOdmor obrada;
     }
 
     private void ucitajVrijednosti() {
-        obrada.getEntitet().setGodina(Pomocno.getCijeliBrojIzStringa(txtGodina.getText()));
+       
         obrada.getEntitet().setZaposlenik(cmbZaposlenik.getModel()
                 .getElementAt(cmbZaposlenik.getSelectedIndex()));
     }
 
     private void postaviVrijednosti() {
-        txtGodina.setText(Pomocno.getFormatCijelogBroja(obrada.getEntitet().getGodina()));
+        
         postaviZaposlenike();
     }
     private void postaviZaposlenike() {
@@ -81,12 +85,12 @@ private final ObradaEvidencijaGodisnjiOdmor obrada;
         btnDodaj = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         btnPromijeni = new javax.swing.JButton();
-        txtGodina = new javax.swing.JTextField();
         btnPreostaliBrojDanaGo = new javax.swing.JButton();
         lblIzracunRazmjerni = new javax.swing.JLabel();
         btnRazmjerniDioGo = new javax.swing.JButton();
         lblIzracunGo = new javax.swing.JLabel();
         cmbZaposlenik = new javax.swing.JComboBox<>();
+        txtGodina = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -156,8 +160,7 @@ private final ObradaEvidencijaGodisnjiOdmor obrada;
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(btnRazmjerniDioGo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnPreostaliBrojDanaGo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtGodina, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
+                                .addComponent(btnPreostaliBrojDanaGo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnDodaj)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -172,7 +175,10 @@ private final ObradaEvidencijaGodisnjiOdmor obrada;
                         .addComponent(lblIzracunGo, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(59, 59, 59)
-                        .addComponent(lblIzracunRazmjerni, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblIzracunRazmjerni, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(txtGodina, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -186,9 +192,9 @@ private final ObradaEvidencijaGodisnjiOdmor obrada;
                         .addComponent(cmbZaposlenik, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(13, 13, 13)
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtGodina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(15, 15, 15)
                         .addComponent(btnPreostaliBrojDanaGo)
                         .addGap(27, 27, 27)
                         .addComponent(lblIzracunGo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -196,7 +202,7 @@ private final ObradaEvidencijaGodisnjiOdmor obrada;
                         .addComponent(btnRazmjerniDioGo)
                         .addGap(18, 18, 18)
                         .addComponent(lblIzracunRazmjerni, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnDodaj)
                             .addComponent(btnPromijeni)
