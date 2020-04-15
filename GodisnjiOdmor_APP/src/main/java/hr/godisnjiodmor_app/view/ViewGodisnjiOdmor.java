@@ -11,7 +11,6 @@ import hr.godisnjiodmor_app.model.GodisnjiOdmor;
 import hr.godisnjiodmor_app.model.Zaposlenik;
 import hr.godisnjiodmor_app.util.GodisnjiException;
 import hr.godisnjiodmor_app.util.Pomocno;
-import java.awt.event.KeyEvent;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
@@ -22,60 +21,61 @@ import javax.swing.JOptionPane;
  * @author Bozena
  */
 public class ViewGodisnjiOdmor extends javax.swing.JFrame {
-private final ObradaGodisnjiOdmor obrada;
+
+    private final ObradaGodisnjiOdmor obrada;
+
     /**
      * Creates new form ViewGodisnjiOdmor
      */
     public ViewGodisnjiOdmor() {
         initComponents();
-        obrada=new ObradaGodisnjiOdmor();
+        obrada = new ObradaGodisnjiOdmor();
         ucitajZaposlenike();
-        
-        
+
     }
+
     private void ucitajZaposlenike() {
         DefaultComboBoxModel<Zaposlenik> m = new DefaultComboBoxModel<>();
-        new ObradaZaposlenik().getPodaci().forEach(z->m.addElement(z));
+        new ObradaZaposlenik().getPodaci().forEach(z -> m.addElement(z));
         cmbZaposlenik.setModel(m);
     }
-    
+
     private void ucitaj() {
-         DefaultListModel<GodisnjiOdmor> m= new DefaultListModel<>();
-        obrada.getPodaci().forEach(godisnjiOdmor->m.addElement(godisnjiOdmor));
+        DefaultListModel<GodisnjiOdmor> m = new DefaultListModel<>();
+        obrada.getPodaci().forEach(godisnjiOdmor -> m.addElement(godisnjiOdmor));
         lstPodaci.setModel(m);
     }
+
     private void ucitajVrijednosti() {
-        
+        obrada.getEntitet().setGodina(Pomocno.getCijeliBrojIzStringa(txtGodina.getText()));
         obrada.getEntitet().setPocetakGodisnjiOdmor(Pomocno.getDatumIzStringa(txtPocetakGodisnjiOdmor.getText()));
         obrada.getEntitet().setKrajGodisnjiOdmor(Pomocno.getDatumIzStringa(txtKrajGodisnjiOdmor.getText()));
         obrada.getEntitet().setKoristenBrojDanaGo(Pomocno.getCijeliBrojIzStringa(txtKoristenBrojDanaGo.getText()));
         obrada.getEntitet().setOdobrenjeNadredeni(chbOdobrenjeNadredeni.isSelected());
         obrada.getEntitet().setZaposlenik(cmbZaposlenik.getModel()
                 .getElementAt(cmbZaposlenik.getSelectedIndex()));
-        
+
     }
+
     private void postaviVrijednosti() {
-        
+        txtGodina.setText(Pomocno.getFormatCijelogBroja(obrada.getEntitet().getGodina()));
         txtPocetakGodisnjiOdmor.setText(Pomocno.getDatum(obrada.getEntitet().getPocetakGodisnjiOdmor()));
         txtKrajGodisnjiOdmor.setText(Pomocno.getDatum(obrada.getEntitet().getKrajGodisnjiOdmor()));
         txtKoristenBrojDanaGo.setText(Pomocno.getFormatCijelogBroja(obrada.getEntitet().getKoristenBrojDanaGo()));
         chbOdobrenjeNadredeni.setSelected(obrada.getEntitet().getOdobrenjeNadredeni());
         postaviZaposlenike();
     }
-    
-     private void postaviZaposlenike() {
+
+    private void postaviZaposlenike() {
         ComboBoxModel<Zaposlenik> m = cmbZaposlenik.getModel();
-        for(int i=0;i<m.getSize();i++){
-            if(m.getElementAt(i).getSifra().equals(
-                    obrada.getEntitet().getZaposlenik().getSifra())){
+        for (int i = 0; i < m.getSize(); i++) {
+            if (m.getElementAt(i).getSifra().equals(
+                    obrada.getEntitet().getZaposlenik().getSifra())) {
                 cmbZaposlenik.setSelectedIndex(i);
                 break;
             }
         }
     }
-    
-     
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -100,6 +100,8 @@ private final ObradaGodisnjiOdmor obrada;
         jScrollPane1 = new javax.swing.JScrollPane();
         lstPodaci = new javax.swing.JList<>();
         cmbZaposlenik = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        txtGodina = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -141,6 +143,8 @@ private final ObradaGodisnjiOdmor obrada;
         });
         jScrollPane1.setViewportView(lstPodaci);
 
+        jLabel5.setText("Godina");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -163,7 +167,9 @@ private final ObradaGodisnjiOdmor obrada;
                     .addComponent(txtKrajGodisnjiOdmor, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPocetakGodisnjiOdmor, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(txtGodina, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(cmbZaposlenik, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -178,20 +184,24 @@ private final ObradaGodisnjiOdmor obrada;
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cmbZaposlenik, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                        .addComponent(txtPocetakGodisnjiOdmor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel3)
+                        .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtKrajGodisnjiOdmor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtGodina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtPocetakGodisnjiOdmor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtKrajGodisnjiOdmor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtKoristenBrojDanaGo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(14, 14, 14)
                         .addComponent(chbOdobrenjeNadredeni)
-                        .addGap(30, 30, 30)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnDodaj)
                             .addComponent(btnPromijeni)
@@ -247,7 +257,7 @@ private final ObradaGodisnjiOdmor obrada;
     }//GEN-LAST:event_btnPromijeniActionPerformed
 
     private void lstPodaciValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstPodaciValueChanged
-         if (evt.getValueIsAdjusting()) {
+        if (evt.getValueIsAdjusting()) {
             return;
         }
         obrada.setEntitet(lstPodaci.getSelectedValue());
@@ -257,11 +267,9 @@ private final ObradaGodisnjiOdmor obrada;
         postaviVrijednosti();
     }//GEN-LAST:event_lstPodaciValueChanged
 
-
     /**
      * @param args the command line arguments
      */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDodaj;
@@ -273,23 +281,13 @@ private final ObradaGodisnjiOdmor obrada;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<GodisnjiOdmor> lstPodaci;
+    private javax.swing.JTextField txtGodina;
     private javax.swing.JTextField txtKoristenBrojDanaGo;
     private javax.swing.JTextField txtKrajGodisnjiOdmor;
     private javax.swing.JTextField txtPocetakGodisnjiOdmor;
     // End of variables declaration//GEN-END:variables
 
-    
-
-    
-
-    
-   
-
-    
-
-    
-
-    
 }
