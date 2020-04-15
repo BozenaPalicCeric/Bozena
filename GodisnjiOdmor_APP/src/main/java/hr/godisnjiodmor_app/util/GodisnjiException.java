@@ -9,16 +9,16 @@ package hr.godisnjiodmor_app.util;
  *
  * @author Bozena
  */
-public class GodisnjiException extends Exception{
+public class GodisnjiException extends Exception {
+
     private String poruka;
 
-  public GodisnjiException (String poruka) {
-      this.poruka=poruka;
-  }
+    public GodisnjiException(String poruka) {
+        this.poruka = poruka;
+    }
 
     public String getPoruka() {
         return poruka;
     }
-  
-    
+
 }
