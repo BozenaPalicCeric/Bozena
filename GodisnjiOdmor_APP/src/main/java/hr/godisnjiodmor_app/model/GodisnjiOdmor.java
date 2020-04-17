@@ -25,9 +25,6 @@ public class GodisnjiOdmor extends Entitet {
     @ManyToOne
     private Zaposlenik zaposlenik;
 
-    @ManyToOne
-    private EvidencijaGodisnjiOdmor evidencijaGodisnjiOdmor;
-
     public Date getPocetakGodisnjiOdmor() {
         return pocetakGodisnjiOdmor;
     }
@@ -74,14 +71,6 @@ public class GodisnjiOdmor extends Entitet {
 
     public void setZaposlenik(Zaposlenik zaposlenik) {
         this.zaposlenik = zaposlenik;
-    }
-
-    public EvidencijaGodisnjiOdmor getEvidencijaGodisnjiOdmor() {
-        return evidencijaGodisnjiOdmor;
-    }
-
-    public void setEvidencijaGodisnjiOdmor(EvidencijaGodisnjiOdmor evidencijaGodisnjiOdmor) {
-        this.evidencijaGodisnjiOdmor = evidencijaGodisnjiOdmor;
     }
 
     @Override
