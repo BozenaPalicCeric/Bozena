@@ -7,10 +7,8 @@ package hr.godisnjiodmor_app.util;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import hr.godisnjiodmor_app.controller.ObradaEvidencijaGodisnjiOdmor;
 import hr.godisnjiodmor_app.controller.ObradaGodisnjiOdmor;
 import hr.godisnjiodmor_app.controller.ObradaZaposlenik;
-import hr.godisnjiodmor_app.model.EvidencijaGodisnjiOdmor;
 import hr.godisnjiodmor_app.model.GodisnjiOdmor;
 import hr.godisnjiodmor_app.model.Zaposlenik;
 import hr.godisnjiodmor_app.view.ViewZaposlenik;
@@ -23,6 +21,8 @@ import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -39,6 +39,18 @@ public class Pomocno {
     public static Zaposlenik LOGIRAN;
 
     private final static DecimalFormat df = df();
+
+    public static Date convertToDateViaInstant(LocalDate dateToConvert) {
+        return java.util.Date.from(dateToConvert.atStartOfDay()
+                .atZone(ZoneId.systemDefault())
+                .toInstant());
+    }
+
+    public static LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
+        return dateToConvert.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+    }
 
     public static String getNazivAplikacije() {
         return "Godišnji odmor APP";
@@ -177,7 +189,7 @@ public class Pomocno {
         }
 
         Zaposlenik z = new Zaposlenik();
-        z.setIme("Pero");
+        z.setIme("Petar");
         z.setPrezime("Petrović");
         z.setOib("95647933683");
         z.setEmail("p.petrovic@gmail.com");
@@ -222,7 +234,7 @@ public class Pomocno {
 
         //z.getGodisnjiOdmori().add(godisnjiOdmor);
         Zaposlenik zaposlenik1 = new Zaposlenik();
-        zaposlenik1.setIme("Miki");
+        zaposlenik1.setIme("Marko");
         zaposlenik1.setPrezime("Mikić");
         zaposlenik1.setOib("34778528808");
         zaposlenik1.setEmail("miki1@gmail.com");
@@ -265,17 +277,6 @@ public class Pomocno {
         }
 
         //zaposlenik1.getGodisnjiOdmori().add(godisnjiOdmor1);
-        EvidencijaGodisnjiOdmor evidencijaGodisnjiOdmor = new EvidencijaGodisnjiOdmor();
-        evidencijaGodisnjiOdmor.setZaposlenik(z);
-        evidencijaGodisnjiOdmor.setPreostaliBrojDanaGodisnjiOdmor(10);
-
-        ObradaEvidencijaGodisnjiOdmor oego = new ObradaEvidencijaGodisnjiOdmor(evidencijaGodisnjiOdmor);
-
-        try {
-            oego.create();
-        } catch (GodisnjiException ex) {
-            System.out.println(ex.getPoruka());
-        }
     }
 
 }
