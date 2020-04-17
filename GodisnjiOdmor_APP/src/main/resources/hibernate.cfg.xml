@@ -48,7 +48,7 @@
         <!-- Ovdje navodimo naše mapirane klase -->
         <mapping class="hr.godisnjiodmor_app.model.Zaposlenik" />
         <mapping class="hr.godisnjiodmor_app.model.GodisnjiOdmor" />
-        <mapping class="hr.godisnjiodmor_app.model.EvidencijaGodisnjiOdmor" />
+        
         
         
         
