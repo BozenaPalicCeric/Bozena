@@ -71,19 +71,5 @@ public class ObradaGodisnjiOdmor extends Obrada<GodisnjiOdmor> {
             throw new GodisnjiException("Provjerite ukupan broj korištenih dana GO");
         }
     }
-    /*public GodisnjiOdmor  kontrolaPreostaliGo( Long zbroj2, Long razlika) {
-        
-        zbroj2=  (Long)session.createQuery (" select coalesce( sum( g.koristenBrojDanaGo),0) from GodisnjiOdmor g "
-                + " where g.zaposlenik.sifra= :zaposlenik"
-                + " and g.godina= :godina")
-               .setParameter("zaposlenik", entitet.getZaposlenik().getSifra())
-               .setParameter("godina", entitet.getGodina())
-                .getSingleResult(); 
-       
-       razlika=entitet.getZaposlenik().getBrojDanaGoPremaUgovoruORadu()-zbroj2;
-       
-       
-       
-
-}*/
+    
 }
