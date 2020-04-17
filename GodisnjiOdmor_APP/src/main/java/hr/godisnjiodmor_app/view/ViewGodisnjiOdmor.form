@@ -39,15 +39,15 @@
                   </Group>
                   <Component id="txtKoristenBrojDanaGo" alignment="0" min="-2" pref="147" max="-2" attributes="0"/>
                   <Component id="jLabel4" alignment="0" min="-2" pref="147" max="-2" attributes="0"/>
-                  <Component id="txtKrajGodisnjiOdmor" alignment="0" min="-2" pref="147" max="-2" attributes="0"/>
                   <Component id="jLabel3" alignment="0" min="-2" pref="147" max="-2" attributes="0"/>
-                  <Component id="txtPocetakGodisnjiOdmor" alignment="0" min="-2" pref="147" max="-2" attributes="0"/>
                   <Component id="jLabel5" alignment="0" min="-2" pref="66" max="-2" attributes="0"/>
                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                       <Component id="txtGodina" alignment="0" max="32767" attributes="0"/>
                       <Component id="cmbZaposlenik" alignment="0" max="32767" attributes="0"/>
                       <Component id="jLabel2" alignment="0" pref="147" max="32767" attributes="0"/>
                   </Group>
+                  <Component id="dpDatumKrajaGo" alignment="0" min="-2" pref="177" max="-2" attributes="0"/>
+                  <Component id="dpDatumPocetkaGo" min="-2" pref="177" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -68,13 +68,13 @@
                       <Component id="txtGodina" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="txtPocetakGodisnjiOdmor" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="10" max="32767" attributes="0"/>
-                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                      <Component id="dpDatumPocetkaGo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="txtKrajGodisnjiOdmor" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
+                      <Component id="dpDatumKrajaGo" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="txtKoristenBrojDanaGo" min="-2" max="-2" attributes="0"/>
@@ -129,14 +129,10 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPromijeniActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtPocetakGodisnjiOdmor">
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
         <Property name="text" type="java.lang.String" value="Kraj godi&#x161;njeg odmora"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtKrajGodisnjiOdmor">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
@@ -188,6 +184,10 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtGodina">
+    </Component>
+    <Component class="com.github.lgooddatepicker.components.DatePicker" name="dpDatumKrajaGo">
+    </Component>
+    <Component class="com.github.lgooddatepicker.components.DatePicker" name="dpDatumPocetkaGo">
     </Component>
   </SubComponents>
 </Form>
