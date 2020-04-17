@@ -46,7 +46,6 @@ public class ObradaZaposlenik extends Obrada<Zaposlenik> {
     protected void kontrolaCreate() throws GodisnjiException {
         kontrolaOib();
         kontrolaEmail();
-        //kontrolaLozinka();
         kontrolaIstiOib();
 
     }
@@ -97,12 +96,6 @@ public class ObradaZaposlenik extends Obrada<Zaposlenik> {
                 .uniqueResult();
         if (ukupno > 0) {
             throw new GodisnjiException("U bazi postoji isti OIB, provjerite zaposlenika");
-        }
-    }
-
-    private void kontrolaLozinka() throws GodisnjiException {
-        if (entitet.getLozinka() == null || entitet.getLozinka().trim().length() == 0) {
-            throw new GodisnjiException("Obavezno lozinka");
         }
     }
 
