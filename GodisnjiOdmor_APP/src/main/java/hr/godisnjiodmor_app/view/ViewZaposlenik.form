@@ -29,20 +29,7 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="jLabel3" min="-2" pref="47" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="txtPrezime" alignment="0" pref="147" max="32767" attributes="0"/>
-                                  <Component id="txtOib" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtIme" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="btnGenOib" min="-2" max="-2" attributes="0"/>
-                          </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                   <Component id="txtEmail" alignment="0" max="32767" attributes="0"/>
@@ -68,18 +55,33 @@
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jLabel2" alignment="0" min="-2" pref="47" max="-2" attributes="0"/>
                                   <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel5" alignment="0" min="-2" pref="96" max="-2" attributes="0"/>
                                   <Component id="jLabel6" alignment="0" min="-2" pref="96" max="-2" attributes="0"/>
                                   <Component id="jLabel4" alignment="0" min="-2" pref="47" max="-2" attributes="0"/>
                                   <Component id="txtGoUgovor" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jLabel7" alignment="0" pref="147" max="32767" attributes="0"/>
-                                  <Component id="txtDatumZaposlenja" alignment="0" max="32767" attributes="0"/>
                                   <Component id="cmbNadredeni" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="jLabel5" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtPrezime" alignment="0" pref="147" max="32767" attributes="0"/>
+                                  <Component id="txtOib" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtIme" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="btnGenOib" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel3" min="-2" pref="47" max="-2" attributes="0"/>
+                          <Component id="dpDatumZaposlenja" alignment="0" min="-2" pref="177" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -112,7 +114,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtDatumZaposlenja" min="-2" max="-2" attributes="0"/>
+                      <Component id="dpDatumZaposlenja" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -186,9 +188,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtOib">
-      <Properties>
-        <Property name="horizontalAlignment" type="int" value="4"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
@@ -224,11 +223,6 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JTextField" name="txtDatumZaposlenja">
-      <Properties>
-        <Property name="horizontalAlignment" type="int" value="4"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nadre&#x111;eni"/>
@@ -240,9 +234,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtGoUgovor">
-      <Properties>
-        <Property name="horizontalAlignment" type="int" value="4"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnGenOib">
       <Properties>
@@ -269,6 +260,8 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Zaposlenik&gt;"/>
       </AuxValues>
+    </Component>
+    <Component class="com.github.lgooddatepicker.components.DatePicker" name="dpDatumZaposlenja">
     </Component>
   </SubComponents>
 </Form>
