@@ -36,9 +36,6 @@ public class Zaposlenik extends Entitet {
     @OneToMany(mappedBy = "zaposlenik")
     private List<GodisnjiOdmor> godisnjiOdmori = new ArrayList<>();
 
-    @OneToMany(mappedBy = "zaposlenik")
-    private List<EvidencijaGodisnjiOdmor> evidencijaGodisnjiOdmori = new ArrayList<>();
-
     public String getIme() {
         return ime;
     }
@@ -109,14 +106,6 @@ public class Zaposlenik extends Entitet {
 
     public void setGodisnjiOdmori(List<GodisnjiOdmor> godisnjiOdmori) {
         this.godisnjiOdmori = godisnjiOdmori;
-    }
-
-    public List<EvidencijaGodisnjiOdmor> getEvidencijaGodisnjiOdmori() {
-        return evidencijaGodisnjiOdmori;
-    }
-
-    public void setEvidencijaGodisnjiOdmori(List<EvidencijaGodisnjiOdmor> evidencijaGodisnjiOdmori) {
-        this.evidencijaGodisnjiOdmori = evidencijaGodisnjiOdmori;
     }
 
     @Override
