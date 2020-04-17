@@ -5,12 +5,15 @@
  */
 package hr.godisnjiodmor_app.view;
 
+import com.github.lgooddatepicker.components.DatePickerSettings;
 import hr.godisnjiodmor_app.controller.ObradaGodisnjiOdmor;
 import hr.godisnjiodmor_app.controller.ObradaZaposlenik;
 import hr.godisnjiodmor_app.model.GodisnjiOdmor;
 import hr.godisnjiodmor_app.model.Zaposlenik;
 import hr.godisnjiodmor_app.util.GodisnjiException;
 import hr.godisnjiodmor_app.util.Pomocno;
+import java.util.Date;
+import java.util.Locale;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
@@ -31,6 +34,13 @@ public class ViewGodisnjiOdmor extends javax.swing.JFrame {
         initComponents();
         obrada = new ObradaGodisnjiOdmor();
         ucitajZaposlenike();
+        obrada.setEntitet(new GodisnjiOdmor());
+        DatePickerSettings dps = new DatePickerSettings(new Locale("hr", "HR"));
+        dps.setFormatForDatesCommonEra("dd.MM.yyyy.");
+        DatePickerSettings dpk = new DatePickerSettings(new Locale("hr", "HR"));
+        dpk.setFormatForDatesCommonEra("dd.MM.yyyy.");
+        dpDatumPocetkaGo.setSettings(dps);
+        dpDatumKrajaGo.setSettings(dpk);
 
     }
 
@@ -48,8 +58,19 @@ public class ViewGodisnjiOdmor extends javax.swing.JFrame {
 
     private void ucitajVrijednosti() {
         obrada.getEntitet().setGodina(Pomocno.getCijeliBrojIzStringa(txtGodina.getText()));
-        obrada.getEntitet().setPocetakGodisnjiOdmor(Pomocno.getDatumIzStringa(txtPocetakGodisnjiOdmor.getText()));
-        obrada.getEntitet().setKrajGodisnjiOdmor(Pomocno.getDatumIzStringa(txtKrajGodisnjiOdmor.getText()));
+
+        if (dpDatumPocetkaGo.getDate() != null) {
+            Date dp = Pomocno.convertToDateViaInstant(dpDatumPocetkaGo.getDate());
+            obrada.getEntitet().setPocetakGodisnjiOdmor(dp);
+        }
+
+        //obrada.getEntitet().setPocetakGodisnjiOdmor(Pomocno.getDatumIzStringa(txtPocetakGodisnjiOdmor.getText()));
+        //obrada.getEntitet().setKrajGodisnjiOdmor(Pomocno.getDatumIzStringa(txtKrajGodisnjiOdmor.getText()));
+        if (dpDatumKrajaGo.getDate() != null) {
+            Date dk = Pomocno.convertToDateViaInstant(dpDatumKrajaGo.getDate());
+            obrada.getEntitet().setKrajGodisnjiOdmor(dk);
+        }
+
         obrada.getEntitet().setKoristenBrojDanaGo(Pomocno.getCijeliBrojIzStringa(txtKoristenBrojDanaGo.getText()));
         obrada.getEntitet().setOdobrenjeNadredeni(chbOdobrenjeNadredeni.isSelected());
         obrada.getEntitet().setZaposlenik(cmbZaposlenik.getModel()
@@ -59,8 +80,20 @@ public class ViewGodisnjiOdmor extends javax.swing.JFrame {
 
     private void postaviVrijednosti() {
         txtGodina.setText(Pomocno.getFormatCijelogBroja(obrada.getEntitet().getGodina()));
-        txtPocetakGodisnjiOdmor.setText(Pomocno.getDatum(obrada.getEntitet().getPocetakGodisnjiOdmor()));
-        txtKrajGodisnjiOdmor.setText(Pomocno.getDatum(obrada.getEntitet().getKrajGodisnjiOdmor()));
+        if (obrada.getEntitet().getPocetakGodisnjiOdmor() == null) {
+            dpDatumPocetkaGo.setDate(null);
+        } else {
+            dpDatumPocetkaGo.setDate(Pomocno.convertToLocalDateViaInstant(obrada.getEntitet().getPocetakGodisnjiOdmor()));
+        }
+
+        //txtPocetakGodisnjiOdmor.setText(Pomocno.getDatum(obrada.getEntitet().getPocetakGodisnjiOdmor()));
+        //txtKrajGodisnjiOdmor.setText(Pomocno.getDatum(obrada.getEntitet().getKrajGodisnjiOdmor()));
+        if (obrada.getEntitet().getKrajGodisnjiOdmor() == null) {
+            dpDatumKrajaGo.setDate(null);
+        } else {
+            dpDatumKrajaGo.setDate(Pomocno.convertToLocalDateViaInstant(obrada.getEntitet().getKrajGodisnjiOdmor()));
+        }
+
         txtKoristenBrojDanaGo.setText(Pomocno.getFormatCijelogBroja(obrada.getEntitet().getKoristenBrojDanaGo()));
         chbOdobrenjeNadredeni.setSelected(obrada.getEntitet().getOdobrenjeNadredeni());
         postaviZaposlenike();
@@ -91,9 +124,7 @@ public class ViewGodisnjiOdmor extends javax.swing.JFrame {
         btnDodaj = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         btnPromijeni = new javax.swing.JButton();
-        txtPocetakGodisnjiOdmor = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtKrajGodisnjiOdmor = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtKoristenBrojDanaGo = new javax.swing.JTextField();
         chbOdobrenjeNadredeni = new javax.swing.JCheckBox();
@@ -102,6 +133,8 @@ public class ViewGodisnjiOdmor extends javax.swing.JFrame {
         cmbZaposlenik = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         txtGodina = new javax.swing.JTextField();
+        dpDatumKrajaGo = new com.github.lgooddatepicker.components.DatePicker();
+        dpDatumPocetkaGo = new com.github.lgooddatepicker.components.DatePicker();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -164,14 +197,14 @@ public class ViewGodisnjiOdmor extends javax.swing.JFrame {
                         .addComponent(btnObrisi))
                     .addComponent(txtKoristenBrojDanaGo, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtKrajGodisnjiOdmor, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPocetakGodisnjiOdmor, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(txtGodina, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(cmbZaposlenik, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
+                    .addComponent(dpDatumKrajaGo, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dpDatumPocetkaGo, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -189,13 +222,13 @@ public class ViewGodisnjiOdmor extends javax.swing.JFrame {
                         .addComponent(txtGodina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtPocetakGodisnjiOdmor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                        .addComponent(jLabel3)
+                        .addComponent(dpDatumPocetkaGo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtKrajGodisnjiOdmor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dpDatumKrajaGo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtKoristenBrojDanaGo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -277,6 +310,8 @@ public class ViewGodisnjiOdmor extends javax.swing.JFrame {
     private javax.swing.JButton btnPromijeni;
     private javax.swing.JCheckBox chbOdobrenjeNadredeni;
     private javax.swing.JComboBox<Zaposlenik> cmbZaposlenik;
+    private com.github.lgooddatepicker.components.DatePicker dpDatumKrajaGo;
+    private com.github.lgooddatepicker.components.DatePicker dpDatumPocetkaGo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -286,8 +321,6 @@ public class ViewGodisnjiOdmor extends javax.swing.JFrame {
     private javax.swing.JList<GodisnjiOdmor> lstPodaci;
     private javax.swing.JTextField txtGodina;
     private javax.swing.JTextField txtKoristenBrojDanaGo;
-    private javax.swing.JTextField txtKrajGodisnjiOdmor;
-    private javax.swing.JTextField txtPocetakGodisnjiOdmor;
     // End of variables declaration//GEN-END:variables
 
 }
