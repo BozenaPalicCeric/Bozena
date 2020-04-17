@@ -5,10 +5,14 @@
  */
 package hr.godisnjiodmor_app.view;
 
+import com.github.lgooddatepicker.components.DatePickerSettings;
 import hr.godisnjiodmor_app.controller.ObradaZaposlenik;
+import hr.godisnjiodmor_app.model.GodisnjiOdmor;
 import hr.godisnjiodmor_app.model.Zaposlenik;
 import hr.godisnjiodmor_app.util.GodisnjiException;
 import hr.godisnjiodmor_app.util.Pomocno;
+import java.util.Date;
+import java.util.Locale;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
@@ -30,6 +34,10 @@ public class ViewZaposlenik extends javax.swing.JFrame {
         obrada = new ObradaZaposlenik();
         postInitComponents();
         ucitajNadredene();
+        obrada.setEntitet(new Zaposlenik());
+        DatePickerSettings dps = new DatePickerSettings(new Locale("hr", "HR"));
+        dps.setFormatForDatesCommonEra("dd.MM.yyyy.");
+        dpDatumZaposlenja.setSettings(dps);
     }
 
     private void postInitComponents() {
@@ -54,7 +62,11 @@ public class ViewZaposlenik extends javax.swing.JFrame {
         obrada.getEntitet().setPrezime(txtPrezime.getText());
         obrada.getEntitet().setOib(txtOib.getText());
         obrada.getEntitet().setEmail(txtEmail.getText());
-        obrada.getEntitet().setDatumZaposlenja(Pomocno.getDatumIzStringa(txtDatumZaposlenja.getText()));
+        if (dpDatumZaposlenja.getDate() != null) {
+            Date dp = Pomocno.convertToDateViaInstant(dpDatumZaposlenja.getDate());
+            obrada.getEntitet().setDatumZaposlenja(dp);
+        }
+
         obrada.getEntitet().setBrojDanaGoPremaUgovoruORadu(Pomocno.getCijeliBrojIzStringa(txtGoUgovor.getText()));
 
         obrada.getEntitet().setNadredeni(cmbNadredeni.getModel()
@@ -66,7 +78,12 @@ public class ViewZaposlenik extends javax.swing.JFrame {
         txtPrezime.setText(obrada.getEntitet().getPrezime());
         txtOib.setText(obrada.getEntitet().getOib());
         txtEmail.setText(obrada.getEntitet().getEmail());
-        txtDatumZaposlenja.setText(Pomocno.getDatum(obrada.getEntitet().getDatumZaposlenja()));
+        if (obrada.getEntitet().getDatumZaposlenja() == null) {
+            dpDatumZaposlenja.setDate(null);
+        } else {
+            dpDatumZaposlenja.setDate(Pomocno.convertToLocalDateViaInstant(obrada.getEntitet().getDatumZaposlenja()));
+        }
+
         txtGoUgovor.setText(Pomocno.getFormatCijelogBroja(obrada.getEntitet().getBrojDanaGoPremaUgovoruORadu()));
 
         postaviNadredene();
@@ -106,13 +123,13 @@ public class ViewZaposlenik extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         lstPodaci = new javax.swing.JList<>();
-        txtDatumZaposlenja = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         txtGoUgovor = new javax.swing.JTextField();
         btnGenOib = new javax.swing.JButton();
         btnGenEmail = new javax.swing.JButton();
         cmbNadredeni = new javax.swing.JComboBox<>();
+        dpDatumZaposlenja = new com.github.lgooddatepicker.components.DatePicker();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -143,8 +160,6 @@ public class ViewZaposlenik extends javax.swing.JFrame {
 
         jLabel3.setText("OIB");
 
-        txtOib.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-
         jLabel4.setText("Email");
 
         jLabel5.setText("Datum zaposlenja");
@@ -156,13 +171,9 @@ public class ViewZaposlenik extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(lstPodaci);
 
-        txtDatumZaposlenja.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-
         jLabel6.setText("Nadređeni");
 
         jLabel7.setText("Broj dana GO prema Ugovoru");
-
-        txtGoUgovor.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         btnGenOib.setText("GenOIB");
         btnGenOib.addActionListener(new java.awt.event.ActionListener() {
@@ -188,17 +199,7 @@ public class ViewZaposlenik extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtPrezime, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                                    .addComponent(txtOib, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtIme, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnGenOib))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,15 +219,26 @@ public class ViewZaposlenik extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel1)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtGoUgovor)
                                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                                    .addComponent(txtDatumZaposlenja)
                                     .addComponent(cmbNadredeni, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtPrezime, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                                    .addComponent(txtOib, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtIme, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnGenOib)))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dpDatumZaposlenja, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -253,7 +265,7 @@ public class ViewZaposlenik extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtDatumZaposlenja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(dpDatumZaposlenja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -369,6 +381,7 @@ public class ViewZaposlenik extends javax.swing.JFrame {
     private javax.swing.JButton btnObrisi;
     private javax.swing.JButton btnPromijeni;
     private javax.swing.JComboBox<Zaposlenik> cmbNadredeni;
+    private com.github.lgooddatepicker.components.DatePicker dpDatumZaposlenja;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -378,7 +391,6 @@ public class ViewZaposlenik extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<Zaposlenik> lstPodaci;
-    private javax.swing.JTextField txtDatumZaposlenja;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtGoUgovor;
     private javax.swing.JTextField txtIme;
