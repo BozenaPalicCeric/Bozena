@@ -25,7 +25,7 @@ public class Start {
         new SplashScreen().setVisible(true);
         //System.out.println(Pomocno.getGenOIB());
 
-       // Pomocno.pocetniInsert();
+       //Pomocno.pocetniInsert();
     }
 
     public static void main(String[] args) {
