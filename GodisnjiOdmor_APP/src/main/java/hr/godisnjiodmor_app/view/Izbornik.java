@@ -145,7 +145,7 @@ public class Izbornik extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        new EvidencijaGodisnjegOdmora().setVisible(true);
+        new ViewEvidencijaGodisnjegOdmora().setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     /**
