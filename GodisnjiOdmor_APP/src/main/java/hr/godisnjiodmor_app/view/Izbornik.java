@@ -7,8 +7,19 @@ package hr.godisnjiodmor_app.view;
 
 import hr.godisnjiodmor_app.util.HibernateUtil;
 import hr.godisnjiodmor_app.util.Pomocno;
+import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import org.jfree.chart.ChartFactory;
+
+import org.jfree.chart.ChartFrame;
+
+import org.jfree.chart.JFreeChart;
+
+import org.jfree.chart.plot.CategoryPlot;
+
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
  *
@@ -26,6 +37,7 @@ public class Izbornik extends javax.swing.JFrame {
 
         Vrijeme v = new Vrijeme();
         v.start();
+
     }
 
     private class Vrijeme extends Thread {
@@ -55,6 +67,7 @@ public class Izbornik extends javax.swing.JFrame {
 
         jToolBar1 = new javax.swing.JToolBar();
         lblVrijeme = new javax.swing.JLabel();
+        btnGraf = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jmAplikacija = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -69,6 +82,13 @@ public class Izbornik extends javax.swing.JFrame {
 
         lblVrijeme.setText("Vrijeme");
         jToolBar1.add(lblVrijeme);
+
+        btnGraf.setText("Graf");
+        btnGraf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGrafActionPerformed(evt);
+            }
+        });
 
         jmAplikacija.setText("Aplikacija");
 
@@ -117,11 +137,17 @@ public class Izbornik extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnGraf)
+                .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(242, Short.MAX_VALUE)
+                .addContainerGap(201, Short.MAX_VALUE)
+                .addComponent(btnGraf)
+                .addGap(18, 18, 18)
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -148,11 +174,28 @@ public class Izbornik extends javax.swing.JFrame {
         new ViewEvidencijaGodisnjegOdmora().setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
+    private void btnGrafActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrafActionPerformed
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        dataset.setValue(2, "Dani", "Božena");
+        dataset.setValue(20, "Dani", "Petar");
+        dataset.setValue(5, "Dani", "Marko");
+        dataset.setValue(11, "Dani", "Elena");
+        JFreeChart chart = ChartFactory.createBarChart("Neiskorišteni GO", "2020", "Dani", dataset, PlotOrientation.VERTICAL, false, true, false);
+        CategoryPlot p = chart.getCategoryPlot();
+        p.setRangeGridlinePaint(Color.BLACK);
+        ChartFrame frame = new ChartFrame("Neiskorišteni GO u 2020", chart);
+        frame.setVisible(true);
+        frame.setSize(450, 350);
+
+
+    }//GEN-LAST:event_btnGrafActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnGraf;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
