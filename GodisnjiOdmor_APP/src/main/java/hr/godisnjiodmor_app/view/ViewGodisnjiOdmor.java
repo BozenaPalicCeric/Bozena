@@ -33,6 +33,7 @@ public class ViewGodisnjiOdmor extends javax.swing.JFrame {
     public ViewGodisnjiOdmor() {
         initComponents();
         obrada = new ObradaGodisnjiOdmor();
+        postInitComponents();
         ucitajZaposlenike();
         obrada.setEntitet(new GodisnjiOdmor());
         DatePickerSettings dps = new DatePickerSettings(new Locale("hr", "HR"));
@@ -42,6 +43,10 @@ public class ViewGodisnjiOdmor extends javax.swing.JFrame {
         dpDatumPocetkaGo.setSettings(dps);
         dpDatumKrajaGo.setSettings(dpk);
 
+    }
+    private void postInitComponents() {
+        setTitle("Zaposlenik - " + Pomocno.LOGIRAN.getPrezime());
+        ucitaj();
     }
 
     private void ucitajZaposlenike() {
