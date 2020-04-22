@@ -1,12 +1,11 @@
-hr\godisnjiodmor_app\view\EvidencijaGodisnjegOdmora$1.class
 hr\godisnjiodmor_app\view\ViewGodisnjiOdmor$1.class
 hr\godisnjiodmor_app\view\Izbornik$4.class
 hr\godisnjiodmor_app\Start.class
 hr\godisnjiodmor_app\view\ViewZaposlenik.class
 hr\godisnjiodmor_app\view\Izbornik.class
+hr\godisnjiodmor_app\view\ViewEvidencijaGodisnjegOdmora$1.class
 hr\godisnjiodmor_app\controller\ObradaZaposlenik.class
 hr\godisnjiodmor_app\view\Izbornik$1.class
-hr\godisnjiodmor_app\view\EvidencijaGodisnjegOdmora.class
 hr\godisnjiodmor_app\view\ViewZaposlenik$2.class
 hr\godisnjiodmor_app\model\Zaposlenik.class
 hr\godisnjiodmor_app\model\Entitet.class
@@ -18,6 +17,7 @@ hr\godisnjiodmor_app\view\SplashScreen$Ucitavanje.class
 hr\godisnjiodmor_app\view\ViewZaposlenik$4.class
 hr\godisnjiodmor_app\view\ViewZaposlenik$1.class
 hr\godisnjiodmor_app\view\ViewGodisnjiOdmor$2.class
+hr\godisnjiodmor_app\view\ViewEvidencijaGodisnjegOdmora.class
 hr\godisnjiodmor_app\util\Pomocno.class
 hr\godisnjiodmor_app\view\ViewZaposlenik$6.class
 hr\godisnjiodmor_app\view\Autorizacija$1.class
