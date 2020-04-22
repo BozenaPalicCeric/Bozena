@@ -7,7 +7,6 @@ package hr.godisnjiodmor_app.view;
 
 import com.github.lgooddatepicker.components.DatePickerSettings;
 import hr.godisnjiodmor_app.controller.ObradaZaposlenik;
-import hr.godisnjiodmor_app.model.GodisnjiOdmor;
 import hr.godisnjiodmor_app.model.Zaposlenik;
 import hr.godisnjiodmor_app.util.GodisnjiException;
 import hr.godisnjiodmor_app.util.Pomocno;
